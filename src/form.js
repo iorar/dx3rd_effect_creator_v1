@@ -1,7 +1,12 @@
-// 半角→全角の変換
-function hankaku2Zenkaku(str) {
+// 英語の半角→全角の変換
+function alphHankaku2Zenkaku(str) {
     return str.replace(/[A-Za-z]/g, function (s) {
         return String.fromCharCode(s.charCodeAt(0) + 0xFEE0);
+    });
+}
+function numZenkaku2Hankaku(str) {
+    return str.replace(/[０-９]/g, function (s) {
+        return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
     });
 }
 
@@ -57,7 +62,12 @@ function textcopy() {
     if (maxlv == "0" || maxlv == "") {
         maxlv = "ー";
     }
-    // 全角化
+    // 英語の全角化
+    effect = alphHankaku2Zenkaku(effect);
+    // 数字の半角化
+    effect = numZenkaku2Hankaku(effect);
+    // 改行の反映
+    effect = effect.replace(/\n/, "<br>");
 
 
     // 下枠の要素の中を指定内容で書き換え
