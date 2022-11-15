@@ -14,112 +14,169 @@
         @import url(css/style.css);
     </style>
 
-    <h1>DX3rd オリジナルエフェクト生成ツール v0.11(cβ)</h1>
+    <h1>DX3rd オリジナルエフェクト生成ツール v0.12(cβ)</h1>
     <form>
-        <div id="name-box">
-            <label for="e-name">名前</label>
-            <input type="text" id="e-name" name="e-name">
-        </div>
-        <div id="maxlv-box">
-            <label for="maxlv">最大レベル</label>
-            <input type="number" id="maxlv" name="maxlv" min="0" max="20">
-        </div>
-        <div id="timing-box">
-            <div>
-                <label for="timing">タイミング</label>
-                <select name="timing" id="timing" v-on:change="valSelect">
-                    <option value="ー">-</option>
-                    <option value="セットアップ">セットアップ</option>
-                    <option value="イニシアチブ">イニシアチブ</option>
-                    <option value="マイナー">マイナー</option>
-                    <option value="メジャー">メジャー</option>
-                    <option value="クリーンナップ">クリーンナップ</option>
-                    <option value="オート">オート</option>
-                    <option value="常時">常時</option>
-                    <option value="効果参照">効果参照</option>
-                    <option value="free">（自由入力）</option>
-                </select>
-                <input v-if="isFree" type="text" name="timing-free" id="timing-free">
-            </div>
-        </div>
-        <div id="skill-box">
-            <label for="skill">技能</label>
-            <input type="text" id="skill" name="skill" value="ー">
-        </div>
-        <div id="difficulty-box">
-            <div>
-                <label for="difficulty">難易度</label>
-                <select v-on:change="valSelect" name="difficulty" id="difficulty">
-                    <option value="ー">-</option>
-                    <option value="自動成功">自動成功</option>
-                    <option value="対決">対決</option>
-                    <option value="効果参照">効果参照</option>
-                    <option value="free">（自由入力）</option>
-                </select>
-                <input v-if="isFree" type="text" name="difficulty-free" id="difficulty-free">
-            </div>
-        </div>
-        <div id="target-box">
-            <div>
-                <label for="target">対象</label>
-                <select v-on:change="valSelect" name="target" id="target">
-                    <option value="ー">-</option>
-                    <option value="自身">自身</option>
-                    <option value="単体">単体</option>
-                    <option value="範囲">範囲</option>
-                    <option value="範囲（選択）">範囲（選択）</option>
-                    <option value="シーン">シーン</option>
-                    <option value="シーン（選択）">シーン（選択）</option>
-                    <option value="効果参照">効果参照</option>
-                    <option value="（自由入力）">（自由入力）</option>
-                </select>
-                <input v-if="isFree" type="text" name="target-free" id="target-free">
-            </div>
-        </div>
-        <div id="range-box">
-            <div>
-                <label for="range">射程</label>
-                <select v-on:change="valSelect" name="range" id="range">
-                    <option value="ー">-</option>
-                    <option value="至近">至近</option>
-                    <option value="視界">視界</option>
-                    <option value="効果参照">効果参照</option>
-                    <option value="（自由入力）">（自由入力）</option>
-                </select>
-                <input v-if="isFree" type="text" name="range-free" id="limit-free">
-            </div>
-        </div>
-        <div id="cost-box">
-            <label for="cost">侵蝕値</label>
-            <input type="text" id="cost" name="cost">
-        </div>
-        <div id="limit-box">
-            <div>
-                <label for="limit">制限</label>
-                <select v-on:change="valSelect" name="limit" id="limit">
-                    <option value="ー">-</option>
-                    <option value="80％">80%</option>
-                    <option value="100％">100%</option>
-                    <option value="120％-two">120%</option>
-                    <option value="ＲＢ">RB</option>
-                    <option value="Ｄロイス">Dロイス</option>
-                    <option value="リミット">リミット</option>
-                    <option value="効果参照">効果参照</option>
-                    <option value="（自由入力）">（自由入力）</option>
-                </select>
-                <input v-if="isFree" type="text" name="limit-free" id="limit-free">
-            </div>
-        </div>
-        <div>
-            <label for="effect">効果</label>
-            <textarea name="effect" id="effect" cols="30" rows="10"></textarea>
-        </div>
+        <table class="form-table">
+            <tr>
+                <th>エフェクト名称</th>
+                <td>
+                    <div id="name-box">
+                        <label for="e-name"></label>
+                        <input type="text" id="e-name" name="e-name">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>最大レベル</th>
+                <td>
+                    <div id="maxlv-box">
+                        <label for="maxlv"></label>
+                        <input type="number" id="maxlv" name="maxlv" min="0" max="20">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>タイミング</th>
+                <td>
+                    <div id="timing-box">
+                        <div>
+                            <label for="timing"></label>
+                            <select name="timing" id="timing" v-on:change="valSelect">
+                                <option value="ー">-</option>
+                                <option value="セットアップ">セットアップ</option>
+                                <option value="イニシアチブ">イニシアチブ</option>
+                                <option value="マイナー">マイナー</option>
+                                <option value="メジャー">メジャー</option>
+                                <option value="クリーンナップ">クリーンナップ</option>
+                                <option value="オート">オート</option>
+                                <option value="常時">常時</option>
+                                <option value="効果参照">効果参照</option>
+                                <option value="free">（自由入力）</option>
+                            </select>
+                            <input v-if="isFree" type="text" name="timing-free" id="timing-free">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>技能</th>
+                <td>
+                    <div id="skill-box">
+                        <label for="skill"></label>
+                        <input type="text" id="skill" name="skill" value="ー">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>難易度</th>
+                <td>
+                    <div id="difficulty-box">
+                        <div>
+                            <label for="difficulty"></label>
+                            <select v-on:change="valSelect" name="difficulty" id="difficulty">
+                                <option value="ー">-</option>
+                                <option value="自動成功">自動成功</option>
+                                <option value="対決">対決</option>
+                                <option value="効果参照">効果参照</option>
+                                <option value="free">（自由入力）</option>
+                            </select>
+                            <input v-if="isFree" type="text" name="difficulty-free" id="difficulty-free">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>対象</th>
+                <td>
+                    <div id="target-box">
+                        <div>
+                            <label for="target"></label>
+                            <select v-on:change="valSelect" name="target" id="target">
+                                <option value="ー">-</option>
+                                <option value="自身">自身</option>
+                                <option value="単体">単体</option>
+                                <option value="範囲">範囲</option>
+                                <option value="範囲（選択）">範囲（選択）</option>
+                                <option value="シーン">シーン</option>
+                                <option value="シーン（選択）">シーン（選択）</option>
+                                <option value="効果参照">効果参照</option>
+                                <option value="（自由入力）">（自由入力）</option>
+                            </select>
+                            <input v-if="isFree" type="text" name="target-free" id="target-free">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>射程</th>
+                <td>
+                    <div id="range-box">
+                        <div>
+                            <label for="range"></label>
+                            <select v-on:change="valSelect" name="range" id="range">
+                                <option value="ー">-</option>
+                                <option value="至近">至近</option>
+                                <option value="視界">視界</option>
+                                <option value="効果参照">効果参照</option>
+                                <option value="（自由入力）">（自由入力）</option>
+                            </select>
+                            <input v-if="isFree" type="text" name="range-free" id="limit-free">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>侵蝕値</th>
+                <td>
+                    <div id="cost-box">
+                        <label for="cost"></label>
+                        <input type="text" id="cost" name="cost">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>制限</th>
+                <td>
+                    <div id="limit-box">
+                        <div>
+                            <label for="limit"></label>
+                            <select v-on:change="valSelect" name="limit" id="limit">
+                                <option value="ー">-</option>
+                                <option value="80％">80%</option>
+                                <option value="100％">100%</option>
+                                <option value="120％-two">120%</option>
+                                <option value="ＲＢ">RB</option>
+                                <option value="Ｄロイス">Dロイス</option>
+                                <option value="リミット">リミット</option>
+                                <option value="効果参照">効果参照</option>
+                                <option value="（自由入力）">（自由入力）</option>
+                            </select>
+                            <input v-if="isFree" type="text" name="limit-free" id="limit-free">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>効果</th>
+                <td>
+                    <div>
+                        <label for="effect"></label>
+                        <textarea name="effect" id="effect" cols="30" rows="10"></textarea>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>透かし有無</th>
+                <td>
+                    <div class="toggle_button">
+                        <input id="toggle" class="toggle_input" type="checkbox" checked="checked"
+                            onchange="changeWatermark()" />
+                        <label for="toggle" class="toggle_label"></label>
+                    </div>
+                </td>
+            </tr>
+        </table>
     </form>
-    透かし有無
-    <div class="toggle_button">
-        <input id="toggle" class="toggle_input" type="checkbox" checked="checked" onchange="changeWatermark()" />
-        <label for="toggle" class="toggle_label"></label>
-    </div>
     <p><button type="button" onclick="textcopy()">反映する</button></p>
     <div id="effect-table">
         <!-- ここに表を作る -->
@@ -228,8 +285,11 @@
     開発リポジトリ(オープンです) → <a href="https://github.com/iorar/dx3rd_effect_creator_v1">github</a>
     <p>『ダブルクロス The 3rd Edition』は矢野俊策 氏,および有限会社ファーイースト・アミューズメント・リサーチの著作物です。</p>
     <h2>更新履歴</h2>
-    <p>2022/11/15 v0.10 : β版作成</p>
-    <p>2022/11/15 v0.11 : 透かしの有無を操作できるように</p>
+    <div class="diary">
+        <p>2022/11/15 v0.10 : β版作成</p>
+        <p>2022/11/15 v0.11 : 透かしの有無を操作できるように</p>
+        <p>2022/11/15 v0.12 : htmlを弄って見た目を改善</p>
+    </div>
 </footer>
 
 </html>

@@ -4,3 +4,8 @@
     text-align: center;
     width: 100%;
 }
+
+.diary {
+    text-align: start;
+    margin: auto 20%;
+}
