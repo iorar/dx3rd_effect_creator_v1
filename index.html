@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
+        @import url(e-box.css);
+        @import url(credit.css);
+    </style>
+
+    <h1>DX3rd オリジナルエフェクト生成ツール v0.1(cβ)</h1>
+    <form>
+        <div id="name-box">
+            <label for="e-name">名前</label>
+            <input type="text" id="e-name" name="e-name">
+        </div>
+        <div id="maxlv-box">
+            <label for="maxlv">最大レベル</label>
+            <input type="number" id="maxlv" name="maxlv" min="0" max="20">
+        </div>
+        <div id="timing-box">
+            <div>
+                <label for="timing">タイミング</label>
+                <select name="timing" id="timing" v-on:change="valSelect">
+                    <option value="ー">-</option>
+                    <option value="セットアップ">セットアップ</option>
+                    <option value="イニシアチブ">イニシアチブ</option>
+                    <option value="マイナー">マイナー</option>
+                    <option value="メジャー">メジャー</option>
+                    <option value="クリーンナップ">クリーンナップ</option>
+                    <option value="オート">オート</option>
+                    <option value="常時">常時</option>
+                    <option value="効果参照">効果参照</option>
+                    <option value="free">（自由入力）</option>
+                </select>
+                <input v-if="isFree" type="text" name="timing-free" id="timing-free">
+            </div>
+        </div>
+        <div id="skill-box">
+            <label for="skill">技能</label>
+            <input type="text" id="skill" name="skill" placeholder="ー">
+        </div>
+        <div id="difficulty-box">
+            <div>
+                <label for="difficulty">難易度</label>
+                <select v-on:change="valSelect" name="difficulty" id="difficulty">
+                    <option value="ー">-</option>
+                    <option value="自動成功">自動成功</option>
+                    <option value="対決">対決</option>
+                    <option value="効果参照">効果参照</option>
+                    <option value="free">（自由入力）</option>
+                </select>
+                <input v-if="isFree" type="text" name="difficulty-free" id="difficulty-free">
+            </div>
+        </div>
+        <div id="target-box">
+            <div>
+                <label for="target">対象</label>
+                <select v-on:change="valSelect" name="target" id="target">
+                    <option value="ー">-</option>
+                    <option value="自身">自身</option>
+                    <option value="単体">単体</option>
+                    <option value="範囲">範囲</option>
+                    <option value="範囲（選択）">範囲（選択）</option>
+                    <option value="シーン">シーン</option>
+                    <option value="シーン（選択）">シーン（選択）</option>
+                    <option value="効果参照">効果参照</option>
+                    <option value="（自由入力）">（自由入力）</option>
+                </select>
+                <input v-if="isFree" type="text" name="target-free" id="target-free">
+            </div>
+        </div>
+        <div id="range-box">
+            <div>
+                <label for="range">射程</label>
+                <select v-on:change="valSelect" name="range" id="range">
+                    <option value="ー">-</option>
+                    <option value="至近">至近</option>
+                    <option value="視界">視界</option>
+                    <option value="効果参照">効果参照</option>
+                    <option value="（自由入力）">（自由入力）</option>
+                </select>
+                <input v-if="isFree" type="text" name="range-free" id="limit-free">
+            </div>
+        </div>
+        <div id="cost-box">
+            <label for="cost">侵蝕値</label>
+            <input type="text" id="cost" name="cost">
+        </div>
+        <div id="limit-box">
+            <div>
+                <label for="limit">制限</label>
+                <select v-on:change="valSelect" name="limit" id="limit">
+                    <option value="ー">-</option>
+                    <option value="80％">80%</option>
+                    <option value="100％">100%</option>
+                    <option value="120％-two">120%</option>
+                    <option value="ＲＢ">RB</option>
+                    <option value="Ｄロイス">Dロイス</option>
+                    <option value="リミット">リミット</option>
+                    <option value="効果参照">効果参照</option>
+                    <option value="（自由入力）">（自由入力）</option>
+                </select>
+                <input v-if="isFree" type="text" name="limit-free" id="limit-free">
+            </div>
+        </div>
+        <div>
+            <label for="effect">効果</label>
+            <textarea name="effect" id="effect" cols="30" rows="10"></textarea>
+        </div>
+    </form>
+    <p><button type="button" onclick="textcopy()">反映する</button></p>
+    <div id="effect-table">
+        <!-- ここに表を作る -->
+        <div class="e-box">
+            <!-- lines -->
+            <div class="vertical-1"></div>
+            <div class="vertical-2"></div>
+            <div class="vertical-3"></div>
+            <div class="vertical-4"></div>
+            <div class="horizontal-1"></div>
+            <div class="horizontal-2"></div>
+            <div class="horizontal-3"></div>
+            <div class="horizontal-4"></div>
+            <!-- watermark -->
+            <div class="watermark">同人<br>　エフェクト</div>
+            <!-- effect name -->
+            <div class="e-name">
+                <div class="e-name-value">
+                    <!-- ヴィークルモーフィング -->
+                    <ruby data-ruby="">
+                        <rb>
+                            同人
+                        </rb>
+                        <rp>（</rp>
+                        <rt>どうじん</rt>
+                        <rp>）</rp>
+                    </ruby>
+                    エフェクトの
+                    <ruby data-ruby="">
+                        <rb>
+                            作
+                        </rb>
+                        <rp>（</rp>
+                        <rt>つく</rt>
+                        <rp>）</rp>
+                    </ruby>
+                    り
+                    <ruby data-ruby="">
+                        <rb>
+                            方
+                        </rb>
+                        <rp>（</rp>
+                        <rt>かた</rt>
+                        <rp>）</rp>
+                    </ruby>
+                </div>
+            </div>
+            <div class="e-others">
+                <div class="e-others-bound">
+                    <p class="eo e-maxlv">最大レベル：</p>
+                    <p class="eo ev e-maxlv-value">99</p><br>
+                    <div class="eb">
+                        <p class="eo e-timing">タイミング：</p>
+                        <p class="eo ev e-timing-value">オート</p><br>
+                    </div>
+                    <div class="e-left-column">
+                        <div class="eb">
+                            <p class="eo e-skill">技能：</p>
+                            <p class="eo ev e-skill-value">シンドローム</p><br>
+                        </div>
+                        <div class="eb">
+                            <p class="eo e-target">対象：</p>
+                            <p class="eo ev e-target-value">シーン（選択）</p><br>
+                        </div>
+                        <div class="eb">
+                            <p class="eo e-cost">侵蝕値：</p>
+                            <p class="eo ev e-cost-value">10D10</p>
+                        </div>
+                    </div>
+                    <div class="eb e-right-column">
+                        <div class="eb">
+                            <div class="eo e-difficulty">難易度：</div>
+                            <div class="eo ev e-difficulty-value">自動成功</div><br>
+                        </div>
+                        <div class="eb">
+                            <p class="eo e-range">射程：</p>
+                            <p class="eo ev e-range-value">視界</p><br>
+                        </div>
+                        <div class="eb">
+                            <p class="eo e-limit">制限：</p>
+                            <p class="eo ev e-limit-value">-</p>
+                        </div>
+                    </div>
+                    <div class="e-effect-box">
+                        <p class="eo e-effect">効果：</p>
+                        <p class="eo ev e-effect-value">
+                            任意のエフェクトを作れるようになるエフェクト。<br>
+                            使い方：上のフォームを埋めて[反映する]をクリックしてください。<br>
+                            「名前」欄はハーメルン式のルビが振れます。例：|同人《どうじん》の|力《ちから》<br>
+                            注意：長すぎるエフェクト名を入力すると壊れます。《ヴィークルモーフィング》くらいが限界の長さです。
+                        </p><br>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        <div>
+        </div>
+        <br>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="index.js"></script>
+    <script src="form.js"></script>
+</body>
+<footer class="credit">
+    指摘、報告、要望、感謝 → <a href="https://twitter.com/JUNIOR_Arsenals">開発者twitter</a>
+    <p>『ダブルクロス The 3rd Edition』は矢野俊策 氏,および有限会社ファーイースト・アミューズメント・リサーチの著作物です。</p>
+</footer>
+
+</html>
