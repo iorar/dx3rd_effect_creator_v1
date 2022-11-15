@@ -11,6 +11,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
         @import url(css/e-box.css);
         @import url(css/credit.css);
+        @import url(css/style.css);
     </style>
 
     <h1>DX3rd オリジナルエフェクト生成ツール v0.1(cβ)</h1>
@@ -114,6 +115,11 @@
             <textarea name="effect" id="effect" cols="30" rows="10"></textarea>
         </div>
     </form>
+    透かし有無
+    <div class="toggle_button">
+        <input id="toggle" class="toggle_input" type="checkbox" checked="checked" onchange="changeWatermark()" />
+        <label for="toggle" class="toggle_label"></label>
+    </div>
     <p><button type="button" onclick="textcopy()">反映する</button></p>
     <div id="effect-table">
         <!-- ここに表を作る -->

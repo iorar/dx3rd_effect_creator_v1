@@ -72,3 +72,13 @@ function textcopy() {
     document.getElementsByClassName("e-limit-value")[0].innerHTML = limit;
     document.getElementsByClassName("e-effect-value")[0].innerHTML = effect;
 }
+
+function changeWatermark() {
+    console.log("watermark changing..");
+    checked = document.getElementById("toggle").checked;
+    if (checked == true) {
+        document.getElementsByClassName("watermark")[0].innerHTML = "同人<br>　エフェクト"
+    } else {
+        document.getElementsByClassName("watermark")[0].innerHTML = ""
+    }
+}
