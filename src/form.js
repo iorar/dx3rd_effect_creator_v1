@@ -67,7 +67,7 @@ function textcopy() {
     // 数字の半角化
     effect = numZenkaku2Hankaku(effect);
     // 改行の反映
-    effect = effect.replace(/\n/, "<br>");
+    effect = effect.replace(/\n/g, "<br>");
 
 
     // 下枠の要素の中を指定内容で書き換え
