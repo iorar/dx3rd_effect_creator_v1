@@ -9,8 +9,8 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap');
-        @import url(e-box.css);
-        @import url(credit.css);
+        @import url(css/e-box.css);
+        @import url(css/credit.css);
     </style>
 
     <h1>DX3rd オリジナルエフェクト生成ツール v0.1(cβ)</h1>
@@ -43,7 +43,7 @@
         </div>
         <div id="skill-box">
             <label for="skill">技能</label>
-            <input type="text" id="skill" name="skill" placeholder="ー">
+            <input type="text" id="skill" name="skill" value="ー">
         </div>
         <div id="difficulty-box">
             <div>
@@ -214,11 +214,12 @@
         <br>
     </div>
     <script src="https://unpkg.com/vue@next"></script>
-    <script src="index.js"></script>
-    <script src="form.js"></script>
+    <script src="src/index.js"></script>
+    <script src="src/form.js"></script>
 </body>
 <footer class="credit">
-    指摘、報告、要望、感謝 → <a href="https://twitter.com/JUNIOR_Arsenals">開発者twitter</a>
+    指摘、報告、要望、感謝 → <a href="https://twitter.com/JUNIOR_Arsenals">開発者twitter</a><br>
+    開発リポジトリ(オープンです) → <a href="https://github.com/iorar/dx3rd_effect_creator_v1">github</a>
     <p>『ダブルクロス The 3rd Edition』は矢野俊策 氏,および有限会社ファーイースト・アミューズメント・リサーチの著作物です。</p>
 </footer>
 
