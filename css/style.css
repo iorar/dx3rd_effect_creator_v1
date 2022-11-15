@@ -50,3 +50,46 @@
     width: 75px;
     height: 35px;
 }
+
+.ok-button {
+    position: relative;
+    font-size: larger;
+    width: 50%;
+    left: calc(50%);
+}
+
+.form {
+    float: left;
+    width: 40%;
+}
+
+.form-table th {
+    width: 30%;
+}
+
+.form-table td {
+    width: 70%;
+}
+
+.form-table input {
+    width: 100%;
+}
+
+.form-table select {
+    width: 40%;
+}
+
+.form-table #timing-free,
+#difficulty-free,
+#target-free,
+#range-free,
+#limit-free {
+    margin-left: 5%;
+    width: 50% !important;
+}
+
+.effect-table {
+    float: calc(50%);
+    width: 50%;
+    background-color: aqua;
+}
